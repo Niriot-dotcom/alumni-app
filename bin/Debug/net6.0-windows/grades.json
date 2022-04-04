@@ -1,0 +1,11 @@
+{
+  "studentId": 1,
+  "name": "Paty Lopez Mendez",
+  "courses": [
+    {
+      "courseId": 1,
+      "name": "math I",
+      "grade": 7.8
+    }
+  ]
+}

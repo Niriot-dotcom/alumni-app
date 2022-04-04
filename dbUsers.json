@@ -1,0 +1,54 @@
+[
+  {
+    "userId": 1,
+    "firstName": "Paty",
+    "lastName": "Lopez",
+    "username": "Paty",
+    "password": "asd",
+    "type": "STUDENT",
+    "fullName": "Paty Lopez Mendez",
+    "career": "Artificial Intelligence Engineering",
+    "birthYear":  2001,
+    "hometown":  "ZAC"
+  },
+  {
+    "userId": 2,
+    "firstName": "Andres",
+    "lastName": "Lopez",
+    "username": "Andres",
+    "password": "asd",
+    "type": "STUDENT",
+    "fullName": "Andres Lopez Mendez",
+    "career": "Artificial Intelligence Engineering",
+    "birthYear": 2006,
+    "hometown": "ZAC"
+  },
+  {
+    "userId": 3,
+    "firstName": "Bryan",
+    "lastName": "Lopez",
+    "username": "Bryan",
+    "password": "asd",
+    "type": "STUDENT",
+    "fullName": "Bryan Lopez Mendez",
+    "career": "Artificial Intelligence Engineering",
+    "birthYear": 1996,
+    "hometown": "ZAC"
+  },
+  {
+    "userId": 4,
+    "firstName": "Alice",
+    "lastName": "Lopez",
+    "username": "Alice",
+    "password": "asd",
+    "type": "TEACHER"
+  },
+  {
+    "userId": 5,
+    "firstName": "Valeria",
+    "lastName": "Hernandez",
+    "username": "Valeria",
+    "password": "asd",
+    "type": "ADMIN"
+  }
+]
