@@ -34,11 +34,11 @@ namespace _2P_DP_PatyLopez
                 }
                 else
                 {
-                    Console.WriteLine("password is wrong");
+                    MessageBox.Show("Password is wrong");
                 }
             } else
             {
-                Console.WriteLine("user does not exists");
+                MessageBox.Show("User does not exists");
             }
         }
 

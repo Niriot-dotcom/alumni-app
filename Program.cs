@@ -11,6 +11,7 @@ namespace _2P_DP_PatyLopez
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+            Application.EnableVisualStyles();
             Application.Run(new LoginForm());
         }
     }

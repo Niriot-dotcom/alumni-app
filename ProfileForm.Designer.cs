@@ -30,6 +30,7 @@
         {
             this.ProfileLabel = new System.Windows.Forms.Label();
             this.downloadGradesButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
             // ProfileLabel
@@ -51,11 +52,26 @@
             this.downloadGradesButton.UseVisualStyleBackColor = true;
             this.downloadGradesButton.Click += new System.EventHandler(this.downloadGradesButton_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(77, 122);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1050, 200);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1448, 876);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.downloadGradesButton);
             this.Controls.Add(this.ProfileLabel);
             this.Name = "ProfileForm";
@@ -71,5 +87,6 @@
 
         private Label ProfileLabel;
         private Button downloadGradesButton;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }
