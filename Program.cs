@@ -4,6 +4,8 @@ namespace _2P_DP_PatyLopez
 {
     public static class Program
     {
+
+        public static User LoggedUser;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

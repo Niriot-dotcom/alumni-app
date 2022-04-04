@@ -14,4 +14,6 @@ namespace _2P_DP_PatyLopez
         public string? username;
         public string? password;
     }
+
+    // public void GetGradesByStudentId() { }
 }

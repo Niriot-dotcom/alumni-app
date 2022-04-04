@@ -29,6 +29,7 @@ namespace _2P_DP_PatyLopez
                 {
                     Console.WriteLine("login success!");
                     this.Hide();
+                    Program.LoggedUser = user;
                     ProfileForm profileForm = new ProfileForm();
                     profileForm.ShowDialog();
                 }

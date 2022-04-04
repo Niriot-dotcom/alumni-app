@@ -174,6 +174,58 @@ namespace _2P_DP_PatyLopez
 
 
 
+        interface Format
+        {
+            void CreateFile(string studentName, List<CourseWithGrade> grades);
+        }
+
+        class TxtFormat : Format
+        {
+            public void CreateFile(string studentName, List<CourseWithGrade> grades)
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{studentName}_Grades.txt";
+                if (File.Exists(path))
+                    File.Delete(path);
+
+                using (StreamWriter writer = File.CreateText(path))
+                {
+                    writer.WriteLine("\t\t\tGRADES");
+                    writer.WriteLine("");
+                    writer.WriteLine("---------------------------------------------");
+                    writer.WriteLine("| Student: " + studentName);
+                    writer.WriteLine("---------------------------------------------");
+                    writer.WriteLine("|          Course          |    Grade    |");
+                    foreach (CourseWithGrade c in grades)
+                    {
+                        writer.WriteLine("|  " + c.name + "\t\t\t\t   " + c.grade);
+                    }
+                    writer.WriteLine("---------------------------------------------");
+                }
+                Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
+                // return Content("This is some text.", "text/plain");
+                //return new File(new UTF8Encoding().GetBytes(csv.ToString()), "text/plain", "Export.csv"))
+            }
+        }
+
+        class JsonFormat : Format
+        {
+            public void CreateFile(string studentName, List<CourseWithGrade> grades)
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{studentName}_Grades.json";
+                if (File.Exists(path))
+                    File.Delete(path);
+
+                using (StreamWriter writer = File.CreateText(path))
+                {
+                    string stringjson = JsonConvert.SerializeObject(grades, Formatting.Indented);
+                    writer.Write(stringjson);
+                }
+                Console.WriteLine("grades.json created!");
+                Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
+            }
+        }
+
+
 
 
         class CourseWithGrade
@@ -183,101 +235,40 @@ namespace _2P_DP_PatyLopez
             public float grade;
         }
 
-        class Grades
-        {
-            public int studentId;
-            public string name;
-            public List<CourseWithGrade> courses;
-        }
-
         private void downloadGradesButton_Click(object sender, EventArgs e)
         {
-            var gradesFormat = ConfigurationManager.AppSettings["GRADES_FORMAT"];
-            Console.WriteLine("grades format: " + gradesFormat);
-            downloadGrades(gradesFormat);
-        }
+            // List<CourseWithGrade> studentGrades = new GetGradesByStudentId(Program.LoggedUser);
+            List<CourseWithGrade> studentGrades = new List<CourseWithGrade>()
+            {
+                new CourseWithGrade()
+                {
+                    courseId = 1,
+                    name = "math 1",
+                    grade = 7.8f
+                },
+                new CourseWithGrade()
+                {
+                    courseId = 2,
+                    name = "physics",
+                    grade = 8f
+                },
+                new CourseWithGrade()
+                {
+                    courseId = 3,
+                    name = "history",
+                    grade = 5.0f
+                },
+            };
 
-        private void downloadGrades(string fileType)
-        {
-            if (fileType == "txt")
-            {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\grades.txt";
-                //Check if the file exists
-                if (!File.Exists(path))
-                {
-                    //using (StreamWriter writer = new StreamWriter(Response.OutputStream, Encoding.UTF8))
-                    //{
-                    //    writer.Write("This is the content");
-                    //}
-                    // Create the file and use streamWriter to write text to it.
-                    //If the file existence is not check, this will overwrite said file.
-                    //Use the using block so the file can close and vairable disposed correctly
-                    using (StreamWriter writer = File.CreateText(path))
-                    {
-                        writer.WriteLine("\tGRADES");
-                        writer.WriteLine("");
-                        writer.WriteLine("---------------------------------------------");
-                        writer.WriteLine("| Student: " + "Paty Lopez Mendez");
-                        writer.WriteLine("---------------------------------------------");
-                        writer.WriteLine("|          Course          |    Grade    |");
-                        writer.WriteLine("| " + "math I           =>        7");
-                        writer.WriteLine("| " + "math I           =>        8");
-                        writer.WriteLine("| " + "math I           =>        9");
-                        writer.WriteLine("| " + "math I           =>        10");
-                        writer.WriteLine("---------------------------------------------");
-                    }
-                    Console.WriteLine("grades.txt created!");
-                    Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
-                } else
-                {
-                    Console.WriteLine("grades.txt exists ...?");
-                }
-                // return Content("This is some text.", "text/plain");
-                //return new File(new UTF8Encoding().GetBytes(csv.ToString()), "text/plain", "Export.csv"))
-            }
-            else if (fileType == "json")
-            {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\grades.json";
-                if (!File.Exists(path))
-                {
-                    //using (StreamWriter writer = new StreamWriter(Response.OutputStream, Encoding.UTF8))
-                    //{
-                    //    writer.Write("This is the content");
-                    //}
-                    // Create the file and use streamWriter to write text to it.
-                    //If the file existence is not check, this will overwrite said file.
-                    //Use the using block so the file can close and vairable disposed correctly
-                    using (StreamWriter writer = File.CreateText(path))
-                    {
-                        Grades studentGrades = new Grades()
-                        {
-                            studentId = 1,
-                            name = "Paty Lopez Mendez",
-                            courses = new List<CourseWithGrade>()
-                            {
-                                new CourseWithGrade()
-                                {
-                                    courseId = 1,
-                                    name = "math I",
-                                    grade = 7.8f
-                                }
-                            }
-                        };
-                        string stringjson = JsonConvert.SerializeObject(studentGrades, Formatting.Indented);
-                        writer.Write(stringjson);
-                    }
-                    Console.WriteLine("grades.json created!");
-                    Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
-                }
-                else
-                {
-                    Console.WriteLine("grades.json exists ...?");
-                }
-            } else
-            {
+            // App.config
+            var gradesFormat = ConfigurationManager.AppSettings["GRADES_FORMAT"];
+
+            if (gradesFormat == "json")
+                new JsonFormat().CreateFile("Paty Lopez", studentGrades);
+            else if (gradesFormat == "txt")
+                new TxtFormat().CreateFile("Paty Lopez", studentGrades);
+            else
                 Console.WriteLine("unknown file type to export grades");
-                // please try with the following options: txt, docx
-            }
         }
     }
 }
