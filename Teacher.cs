@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace _2P_DP_PatyLopez
 {
-    internal class Teacher
+    class Teacher
     {
+        public void VisualizeForm()
+        {
+            TeacherForm form = new TeacherForm();
+            form.ShowDialog();
+        }
     }
 }

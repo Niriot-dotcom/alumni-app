@@ -28,65 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ProfileLabel = new System.Windows.Forms.Label();
-            this.downloadGradesButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CourseId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // ProfileLabel
+            // dataGridView1
             // 
-            this.ProfileLabel.AutoSize = true;
-            this.ProfileLabel.Location = new System.Drawing.Point(60, 44);
-            this.ProfileLabel.Name = "ProfileLabel";
-            this.ProfileLabel.Size = new System.Drawing.Size(82, 32);
-            this.ProfileLabel.TabIndex = 0;
-            this.ProfileLabel.Text = "Profile";
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CourseId,
+            this.CourseName,
+            this.Grade});
+            this.dataGridView1.Location = new System.Drawing.Point(289, 162);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 82;
+            this.dataGridView1.RowTemplate.Height = 41;
+            this.dataGridView1.Size = new System.Drawing.Size(962, 494);
+            this.dataGridView1.TabIndex = 0;
             // 
-            // downloadGradesButton
+            // CourseId
             // 
-            this.downloadGradesButton.Location = new System.Drawing.Point(1162, 722);
-            this.downloadGradesButton.Name = "downloadGradesButton";
-            this.downloadGradesButton.Size = new System.Drawing.Size(240, 112);
-            this.downloadGradesButton.TabIndex = 1;
-            this.downloadGradesButton.Text = "Download grades";
-            this.downloadGradesButton.UseVisualStyleBackColor = true;
-            this.downloadGradesButton.Click += new System.EventHandler(this.downloadGradesButton_Click);
+            this.CourseId.HeaderText = "Course ID";
+            this.CourseId.MinimumWidth = 10;
+            this.CourseId.Name = "CourseId";
+            this.CourseId.ReadOnly = true;
             // 
-            // tableLayoutPanel1
+            // CourseName
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(77, 122);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1050, 200);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.CourseName.HeaderText = "Course Name";
+            this.CourseName.MinimumWidth = 10;
+            this.CourseName.Name = "CourseName";
+            this.CourseName.ReadOnly = true;
+            // 
+            // Grade
+            // 
+            this.Grade.HeaderText = "Grade";
+            this.Grade.MinimumWidth = 10;
+            this.Grade.Name = "Grade";
+            this.Grade.ReadOnly = true;
             // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1448, 876);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.downloadGradesButton);
-            this.Controls.Add(this.ProfileLabel);
+            this.ClientSize = new System.Drawing.Size(1474, 829);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "ProfileForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfileForm";
             this.Load += new System.EventHandler(this.ProfileForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Label ProfileLabel;
-        private Button downloadGradesButton;
-        private TableLayoutPanel tableLayoutPanel1;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn CourseId;
+        private DataGridViewTextBoxColumn CourseName;
+        private DataGridViewTextBoxColumn Grade;
     }
 }

@@ -13,6 +13,12 @@ namespace _2P_DP_PatyLopez
         public string? lastName;
         public string? username;
         public string? password;
+        public string? type;
+        public string? fullName;
+
+        public string? career;
+        public string? birthYear;
+        public string? hometown;
     }
 
     // public void GetGradesByStudentId() { }

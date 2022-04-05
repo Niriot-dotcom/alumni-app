@@ -30,8 +30,25 @@ namespace _2P_DP_PatyLopez
                     Console.WriteLine("login success!");
                     this.Hide();
                     Program.LoggedUser = user;
-                    ProfileForm profileForm = new ProfileForm();
-                    profileForm.ShowDialog();
+
+                    switch (user.type)
+                    {
+                        case "STUDENT":
+                            StudentForm formS = new StudentForm();
+                            formS.ShowDialog();
+                            break;
+                        case "TEACHER":
+                            TeacherForm formT = new TeacherForm();
+                            formT.ShowDialog();
+                            break;
+                        case "SUPERVISOR":
+                            SupervisorForm formA = new SupervisorForm();
+                            formA.ShowDialog();
+                            break;
+                        default:
+                            MessageBox.Show("Unkwnow role.");
+                            break;
+                    }
                 }
                 else
                 {

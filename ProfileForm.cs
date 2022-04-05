@@ -11,27 +11,26 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Web;
 using System.Net;
-using Newtonsoft.Json;
 
 namespace _2P_DP_PatyLopez
 {
     public partial class ProfileForm : Form
     {
 
-        private Panel buttonPanel = new Panel();
-        private DataGridView songsDataGridView = new DataGridView();
-        private Button addNewRowButton = new Button();
-        private Button deleteRowButton = new Button();
+        
         public ProfileForm()
         {
             InitializeComponent();
         }
 
+        private Panel gradesPanel = new Panel();
+        private DataGridView songsDataGridView = new DataGridView();
+
         private void ProfileForm_Load(object sender, EventArgs e)
         {
             //SetupLayout();
-            //SetupDataGridView();
-            //PopulateDataGridView();
+            SetupDataGridView();
+            PopulateDataGridView();
         }
 
         private void songsDataGridView_CellFormatting(object sender,
@@ -58,47 +57,22 @@ namespace _2P_DP_PatyLopez
             }
         }
 
-        private void addNewRowButton_Click(object sender, EventArgs e)
-        {
-            this.songsDataGridView.Rows.Add();
-        }
-
-        private void deleteRowButton_Click(object sender, EventArgs e)
-        {
-            if (this.songsDataGridView.SelectedRows.Count > 0 &&
-                this.songsDataGridView.SelectedRows[0].Index !=
-                this.songsDataGridView.Rows.Count - 1)
-            {
-                this.songsDataGridView.Rows.RemoveAt(
-                    this.songsDataGridView.SelectedRows[0].Index);
-            }
-        }
-
         private void SetupLayout()
         {
             //this.Size = new Size(600, 500);
+            //buttonPanel.Height = 100;
+            //buttonPanel.Dock = DockStyle.Bottom;
 
-            addNewRowButton.Text = "Add Row";
-            addNewRowButton.Location = new Point(10, 10);
-            addNewRowButton.Click += new EventHandler(addNewRowButton_Click);
-
-            deleteRowButton.Text = "Delete Row";
-            deleteRowButton.Location = new Point(100, 10);
-            deleteRowButton.Click += new EventHandler(deleteRowButton_Click);
-
-            buttonPanel.Controls.Add(addNewRowButton);
-            buttonPanel.Controls.Add(deleteRowButton);
-            buttonPanel.Height = 50;
-            buttonPanel.Dock = DockStyle.Bottom;
-
-            this.Controls.Add(this.buttonPanel);
+            //this.Controls.Add(this.buttonPanel);
         }
 
         private void SetupDataGridView()
         {
+            songsDataGridView.Location = new System.Drawing.Point(120, 40);
             this.Controls.Add(songsDataGridView);
 
-            songsDataGridView.ColumnCount = 5;
+            songsDataGridView.ColumnCount = 4;
+            //songsDataGridView.Location = new Point(1000, 75);
 
             songsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
             songsDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -106,8 +80,8 @@ namespace _2P_DP_PatyLopez
                 new Font(songsDataGridView.Font, FontStyle.Bold);
 
             songsDataGridView.Name = "songsDataGridView";
-            songsDataGridView.Location = new Point(8, 8);
-            songsDataGridView.Size = new Size(500, 250);
+            songsDataGridView.Location = new Point(20, 20);
+            songsDataGridView.Size = new Size(1500, 900);
             songsDataGridView.AutoSizeRowsMode =
                 DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             songsDataGridView.ColumnHeadersBorderStyle =
@@ -116,13 +90,14 @@ namespace _2P_DP_PatyLopez
             songsDataGridView.GridColor = Color.Black;
             songsDataGridView.RowHeadersVisible = false;
 
-            songsDataGridView.Columns[0].Name = "Release Date";
-            songsDataGridView.Columns[1].Name = "Track";
-            songsDataGridView.Columns[2].Name = "Title";
-            songsDataGridView.Columns[3].Name = "Artist";
-            songsDataGridView.Columns[4].Name = "Album";
-            songsDataGridView.Columns[4].DefaultCellStyle.Font =
+            songsDataGridView.Columns[0].Name = "Course ID";
+            songsDataGridView.Columns[1].Name = "Course name";
+            songsDataGridView.Columns[2].Name = "Teacher";
+            songsDataGridView.Columns[3].Name = "Grade";
+            songsDataGridView.Columns[3].DefaultCellStyle.Font =
                 new Font(songsDataGridView.DefaultCellStyle.Font, FontStyle.Italic);
+
+            songsDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             songsDataGridView.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
@@ -133,7 +108,6 @@ namespace _2P_DP_PatyLopez
                 DataGridViewCellFormattingEventHandler(
                 songsDataGridView_CellFormatting);
         }
-
 
         private void PopulateDataGridView()
         {
@@ -160,115 +134,7 @@ namespace _2P_DP_PatyLopez
             songsDataGridView.Rows.Add(row4);
             songsDataGridView.Rows.Add(row5);
             songsDataGridView.Rows.Add(row6);
-
-            songsDataGridView.Columns[0].DisplayIndex = 3;
-            songsDataGridView.Columns[1].DisplayIndex = 4;
-            songsDataGridView.Columns[2].DisplayIndex = 0;
-            songsDataGridView.Columns[3].DisplayIndex = 1;
-            songsDataGridView.Columns[4].DisplayIndex = 2;
         }
 
-
-
-
-
-
-
-        interface Format
-        {
-            void CreateFile(string studentName, List<CourseWithGrade> grades);
-        }
-
-        class TxtFormat : Format
-        {
-            public void CreateFile(string studentName, List<CourseWithGrade> grades)
-            {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{studentName}_Grades.txt";
-                if (File.Exists(path))
-                    File.Delete(path);
-
-                using (StreamWriter writer = File.CreateText(path))
-                {
-                    writer.WriteLine("\t\t\tGRADES");
-                    writer.WriteLine("");
-                    writer.WriteLine("---------------------------------------------");
-                    writer.WriteLine("| Student: " + studentName);
-                    writer.WriteLine("---------------------------------------------");
-                    writer.WriteLine("|          Course          |    Grade    |");
-                    foreach (CourseWithGrade c in grades)
-                    {
-                        writer.WriteLine("|  " + c.name + "\t\t\t\t   " + c.grade);
-                    }
-                    writer.WriteLine("---------------------------------------------");
-                }
-                Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
-                // return Content("This is some text.", "text/plain");
-                //return new File(new UTF8Encoding().GetBytes(csv.ToString()), "text/plain", "Export.csv"))
-            }
-        }
-
-        class JsonFormat : Format
-        {
-            public void CreateFile(string studentName, List<CourseWithGrade> grades)
-            {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{studentName}_Grades.json";
-                if (File.Exists(path))
-                    File.Delete(path);
-
-                using (StreamWriter writer = File.CreateText(path))
-                {
-                    string stringjson = JsonConvert.SerializeObject(grades, Formatting.Indented);
-                    writer.Write(stringjson);
-                }
-                Console.WriteLine("grades.json created!");
-                Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory));
-            }
-        }
-
-
-
-
-        class CourseWithGrade
-        {
-            public int courseId;
-            public string name;
-            public float grade;
-        }
-
-        private void downloadGradesButton_Click(object sender, EventArgs e)
-        {
-            // List<CourseWithGrade> studentGrades = new GetGradesByStudentId(Program.LoggedUser);
-            List<CourseWithGrade> studentGrades = new List<CourseWithGrade>()
-            {
-                new CourseWithGrade()
-                {
-                    courseId = 1,
-                    name = "math 1",
-                    grade = 7.8f
-                },
-                new CourseWithGrade()
-                {
-                    courseId = 2,
-                    name = "physics",
-                    grade = 8f
-                },
-                new CourseWithGrade()
-                {
-                    courseId = 3,
-                    name = "history",
-                    grade = 5.0f
-                },
-            };
-
-            // App.config
-            var gradesFormat = ConfigurationManager.AppSettings["GRADES_FORMAT"];
-
-            if (gradesFormat == "json")
-                new JsonFormat().CreateFile("Paty Lopez", studentGrades);
-            else if (gradesFormat == "txt")
-                new TxtFormat().CreateFile("Paty Lopez", studentGrades);
-            else
-                Console.WriteLine("unknown file type to export grades");
-        }
     }
 }

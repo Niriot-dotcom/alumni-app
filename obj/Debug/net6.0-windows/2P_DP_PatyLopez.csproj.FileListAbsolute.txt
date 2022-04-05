@@ -20,3 +20,7 @@
 \\Mac\Home\Desktop\DP_code\2P_DP_PatyLopez\obj\Debug\net6.0-windows\_2P_DP_PatyLopez.ProfileForm.resources
 \\Mac\Home\Desktop\DP_code\2P_DP_PatyLopez\bin\Debug\net6.0-windows\2P_DP_PatyLopez.dll.config
 \\Mac\Home\Desktop\DP_code\2P_DP_PatyLopez\bin\Debug\net6.0-windows\Microsoft.Office.Interop.Word.dll
+\\Mac\Home\Desktop\DP_code\2P_DP_PatyLopez\obj\Debug\net6.0-windows\_2P_DP_PatyLopez.StudentForm.resources
+\\Mac\Home\Desktop\DP_code\2P_DP_PatyLopez\obj\Debug\net6.0-windows\_2P_DP_PatyLopez.SupervisorForm.resources
+\\Mac\Home\Desktop\DP_code\2P_DP_PatyLopez\obj\Debug\net6.0-windows\_2P_DP_PatyLopez.TeacherForm.resources
+\\Mac\Home\Desktop\DP_code\2P_DP_PatyLopez\obj\Debug\net6.0-windows\_2P_DP_PatyLopez.StudentGradesForm.resources
